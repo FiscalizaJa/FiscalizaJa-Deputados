@@ -1,0 +1,39 @@
+@use "colors";
+
+header {
+    padding: 1.2rem;
+
+    #content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            object-fit: contain;
+            max-width: 100%;
+        }
+    }
+
+    #see {
+        display: block;
+        width: fit-content;
+
+        margin-top: 0.4rem;
+        padding: 8px 16px;
+        border-radius: 6px;
+
+        text-align: center;
+        font-size: 1.12em;
+        text-decoration: none;
+        color: colors.$light;
+
+        background-color: colors.$primary;
+        cursor: pointer;
+
+        transition-duration: 300ms;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}

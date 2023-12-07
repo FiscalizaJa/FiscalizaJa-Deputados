@@ -1,0 +1,35 @@
+@use "colors";
+@use "fonts";
+
+body {
+    background-color: colors.$light;
+    color: colors.$dark;
+    font-family: fonts.$primary
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin: 0.3rem 0 0.3rem 0;
+}
+
+p {
+    font-size: 1.13em;
+    margin: 0.3rem 0 0.3rem 0;
+}
+
+a {
+    color: colors.$primary;
+}
+
+.green {
+    color: colors.$primary
+}
+
+.red {
+    color: colors.$secondary
+}

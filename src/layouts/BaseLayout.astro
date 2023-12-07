@@ -1,0 +1,23 @@
+---
+import "../styles/global.scss";
+
+import Navbar from "../components/Navbar.astro"
+
+const { title, description, tags } = Astro.props
+---
+
+<html lang="pt-br">
+    <head>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="tags", content="tags" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+    </head>
+    <body>
+        <Navbar />
+        <div id="site-container">
+            <slot />
+        </div>
+    </body>
+</html>

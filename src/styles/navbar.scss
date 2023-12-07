@@ -1,0 +1,40 @@
+@use "colors";
+
+#nav {
+    width: 100%;
+    padding: 20px;
+
+    border-top: 1px solid #34312d10;
+    border-bottom: 1px solid #34312d10;
+
+    div {
+        width: 85%;
+        margin: auto;
+
+        #nav-content {
+            display: flex;
+            align-items: center;
+
+            p {
+                font-size: 1.18em;
+                width: 60%;
+            }
+
+            #nav-links {
+                display: flex;
+                align-items: center;
+                justify-content: right;
+    
+                gap: 15px;
+
+                a {
+                    text-decoration: none;
+                    font-size: 1.12em;
+                    color: colors.$mid;
+                }
+            }
+        }
+    
+    }
+
+}

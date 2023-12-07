@@ -1,0 +1,49 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import DeputadoHeader from "../../components/DeputadoHeader"
+import DeputadoBody from "../../components/DeputadoBody";
+import "../../styles/deputado.scss";
+
+const { id } = Astro.params
+
+const baseURL = import.meta.env.PUBLIC_API_URL
+
+const date = new Date()
+
+const request_promises = [
+    fetch(`${baseURL}/deputados/${id}`),
+    fetch(`${baseURL}/deputados/${id}/despesas`),
+    fetch(`${baseURL}/relatorios/${id}/viagens?ano=${date.getFullYear()}&mes=${date.getMonth() + 1}`),
+    fetch(`${baseURL}/relatorios/${id}/combustiveis/veiculos?ano=${date.getFullYear()}&mes=${date.getMonth() + 1}`),
+    fetch(`${baseURL}/relatorios/${id}/alimentacao?ano=${date.getFullYear()}&mes=${date.getMonth() + 1}`),
+    fetch(`${baseURL}/relatorios/${id}/locomocao?ano=${date.getFullYear()}&mes=${date.getMonth() + 1}`)
+]
+
+const serialize_promises = []
+
+const requests = await Promise.all(request_promises)
+
+for(const request of requests) {
+    serialize_promises.push(request.json())
+}
+
+const data = await Promise.all(serialize_promises)
+
+const deputado = data[0].data
+
+deputado.dataNascimento = new Date(deputado.dataNascimento)
+deputado.nomeCivil = deputado.nomeCivil.split(" ").map(nome => nome.charAt(0) + nome.slice(1).toLowerCase()).join(" ")
+
+const lista_despesas = data[1].data
+const viagens = data[2]?.data
+const combustiveis = data[3].data
+const alimentacao = data[4].data
+const locomocao = data[5].data
+
+export const prerender = false
+---
+
+<BaseLayout title={`${deputado.siglaSexo === "M" ? "Deputado" : "Deputada"} Federal ${deputado.nome} | FiscalizaJá Deputados`} description={`Informações realmente úteis sobre os gastos ${deputado.siglaSexo === "m" ? "do deputado" : "da deputada"} ${deputado.nome}`}>
+    <DeputadoHeader deputado={deputado} />
+    <DeputadoBody todas_despesas={lista_despesas} deputado={deputado} viagens={viagens} combustiveis={combustiveis} alimentacao={alimentacao} locomocao={locomocao} baseURL={import.meta.env.PUBLIC_API_URL} client:load/>
+</BaseLayout>

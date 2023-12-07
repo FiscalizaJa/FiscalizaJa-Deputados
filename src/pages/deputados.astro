@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ListaDeputados from "../components/ListaDeputados";
+
+const deputadosRequest = await fetch(`${import.meta.env.PUBLIC_API_URL}/deputados`)
+
+if(!deputadosRequest.ok) {
+    throw new Error("Request error")
+}
+
+const deputados = await deputadosRequest.json()
+
+const partidos = []
+
+for(const deputado of deputados.data) {
+    if(!partidos.includes(deputado.siglaPartido) && deputado.siglaPartido?.length) {
+        partidos.push(deputado.siglaPartido)
+    }
+}
+
+---
+
+<BaseLayout title="FiscalizaJá deputados: Todos os atuais 513 deputados em operação na câmara. Fiscalização fácil ao seu alcance." tags="fiscalizaja, dados abertos, deputados, despesas deputados">
+    <ListaDeputados deputados={deputados?.data} partidos={partidos} client:load />
+</BaseLayout>
