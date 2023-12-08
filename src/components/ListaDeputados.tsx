@@ -139,7 +139,7 @@ export default function ListaDeputados(props: { deputados: Deputado[], partidos?
                             <div id="text">
                                 <img 
                                     data-src={deputado.urlFoto}
-                                    alt={`Foto do deputado ${deputado.nome}`}
+                                    alt={`Foto ${deputado.siglaSexo === "M" ? "do deputado" : "da deputada"} ${deputado.nome}`}
                                     width={80}
                                     height={80}
                                 />

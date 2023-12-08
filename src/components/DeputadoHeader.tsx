@@ -26,7 +26,7 @@ export default function DeputadoHeader(props: { deputado: any }) {
                         src={`https://www.camara.leg.br/internet/deputado/bandep/pagina_do_deputado/${deputado.idCamara}.jpg`}
                         width="510"
                         height="210"
-                        alt={`Foto da deputada ${deputado.nome}`}
+                        alt={`Foto de ${deputado.nome} na câmara dos deputados`}
                         />
                    </div>
                     <div>
