@@ -36,12 +36,15 @@ export default function DeputadoListaDespesa(props: { despesas: any, deputadoID:
     return (
         <section className="relatorio">
             <div id="painel">
-                <input type="number" defaultValue={date.getFullYear()} max={date.getFullYear()} min={2009} onChange={(e) => {
-                    setAno(Number(e.currentTarget.value))
-                }} disabled={isLoading} />
-                <input type="number" defaultValue={date.getMonth() + 1} max={12} min={1} onChange={(e) => {
-                    setMes(Number(e.currentTarget.value))
-                }} disabled={isLoading}/>
+            <input type="month" defaultValue={`${date.getFullYear()}-${date.getMonth() + 1}`} max={`${date.getFullYear()}-${date.getMonth() + 1}`} min="2009-01" onChange={(e) => {
+                    const values = e.currentTarget.value.split("-")
+                    const year = Number(values[0])
+                    const month = Number(values[1])
+                    
+                    setAno(year)
+                    setMes(month)
+
+                }}/>
             </div>
             <div className="despesas">
                 {despesas?.map((despesa, i) => (

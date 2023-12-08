@@ -10,7 +10,7 @@
         margin-top: 8vh;
         margin-bottom: 3vh;
 
-        select, input[type=number] {
+        select, input[type=month] {
             display: block;
             background-color: colors.$light;
 
@@ -26,12 +26,13 @@
             }
         }
 
-        select {
-            width: 300px;
+        input[type=month] {
+            font-size: 1.15em;
+            font-weight: normal;
         }
 
-        input[type=number] {
-            width: 60px;
+        select {
+            width: 300px;
         }
     }
 

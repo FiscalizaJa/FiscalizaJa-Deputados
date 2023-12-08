@@ -70,12 +70,15 @@ export default function DeputadoLocomocao(props: { locomocao: any, deputadoID: s
                         </option>
                     ))}
                 </select>
-                <input type="number" defaultValue={date.getFullYear()} max={date.getFullYear()} min={2009} onChange={(e) => {
-                    setAno(Number(e.currentTarget.value))
-                }} disabled={isLoading} />
-                <input type="number" defaultValue={date.getMonth() + 1} max={12} min={1} onChange={(e) => {
-                    setMes(Number(e.currentTarget.value))
-                }} disabled={isLoading}/>
+                <input type="month" defaultValue={`${date.getFullYear()}-${date.getMonth() + 1}`} max={`${date.getFullYear()}-${date.getMonth() + 1}`} min="2009-01" onChange={(e) => {
+                    const values = e.currentTarget.value.split("-")
+                    const year = Number(values[0])
+                    const month = Number(values[1])
+                    
+                    setAno(year)
+                    setMes(month)
+
+                }}/>
             </div>
             <div className="despesas">
                 <div className="despesa" style={{ maxWidth: "80%", width: "fit-content" }}>
