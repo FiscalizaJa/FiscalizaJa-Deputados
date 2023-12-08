@@ -1,9 +1,7 @@
 import "../styles/relatorios.scss";
 
 import { useState, useEffect } from "react";
-import { FaMagnifyingGlassDollar } from "react-icons/fa6";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
-import { MdOutlineLocalTaxi, MdOutlineTaxiAlert } from "react-icons/md";
+import { Search, ArrowLeft, ArrowRight, CarTaxiFront } from "lucide-react";
 import formatDocument from "../formatDocument";
 import Loading from "./Loading";
 
@@ -81,7 +79,7 @@ export default function DeputadoLocomocao(props: { locomocao: any, deputadoID: s
             </div>
             <div className="despesas">
                 <div className="despesa" style={{ maxWidth: "80%", width: "fit-content" }}>
-                    <h2><FaMagnifyingGlassDollar style={{ fontSize: "1.3em", transform: "translateY(6px)" }} /> Observações</h2>
+                    <h2><Search style={{ fontSize: "1.3em", transform: "translateY(6px)" }} /> Observações</h2>
                     {
                         fornecedor?.fornecedor && <p>
                             Gasto R$ {fornecedor.valorGasto} com <strong>{fornecedor.fornecedor}</strong> em {fornecedor.contratacoes} {fornecedor.contratacoes > 1 ? "contratações" : "contratação"} no mês {mes}.
@@ -92,7 +90,7 @@ export default function DeputadoLocomocao(props: { locomocao: any, deputadoID: s
                 </div>
                 {despesas?.map((despesa, i) => (
                     <div className="despesa" key={`Alimentacao-${i}`} style={{ width: "55%" }}>
-                        <h2>{despesa.urlDocumento ? <MdOutlineLocalTaxi className="green" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} /> : <MdOutlineTaxiAlert className="red" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} />} R$ {despesa.valor}</h2>
+                        <h2>{despesa.urlDocumento ? <CarTaxiFront className="green" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} /> : <CarTaxiFront className="red" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} />} R$ {despesa.valor}</h2>
                         <p>Fornecedor: {despesa.fornecedor}</p>
                         <p>{despesa.cnpj ? `CNPJ: ${formatDocument(despesa.cnpj)}` : <span className="red">CNPJ ausente</span>}</p>
                         <p>Emitido em {new Date(despesa.data).toLocaleDateString("pt-br", { dateStyle: "long" })}</p>
@@ -110,12 +108,12 @@ export default function DeputadoLocomocao(props: { locomocao: any, deputadoID: s
                         setPagina(pagina - 1)
                     } 
                 }}>
-                    <IoIosArrowBack />
+                    <ArrowLeft />
                 </div>
                 <div onClick={() => {
                     setPagina(pagina + 1)
                 }}>
-                    <IoIosArrowForward />
+                    <ArrowRight />
                 </div>
             </div>
             <div style={{ textAlign: "center" }}>Página {pagina}</div>

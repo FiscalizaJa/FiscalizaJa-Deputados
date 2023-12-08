@@ -1,12 +1,10 @@
 import "../styles/relatorios.scss";
 
 import { useState, useEffect } from "react";
-import { FaMagnifyingGlassDollar, FaPlaneCircleCheck, FaPlaneCircleExclamation } from "react-icons/fa6";
-import { IoBoat } from "react-icons/io5";
-import { MdOutlineCarCrash, MdOutlineDirectionsCar } from "react-icons/md";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
+import { Car, Plane, Ship, Search, ArrowLeft, ArrowRight } from "lucide-react";
 import formatDocument from "../formatDocument";
 import Loading from "./Loading";
+
 
 function calculaTotal(fornecedores: any) {
     let total = 0
@@ -21,15 +19,15 @@ function calculaTotal(fornecedores: any) {
 function Icon(props: { tipoCombustivel: string, valido: boolean }) {
     if(props.tipoCombustivel === "veiculos") {
         return <>
-            {props.valido ? <MdOutlineDirectionsCar className="green" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} /> : <MdOutlineCarCrash className="red" style={{ fontSize: "1.5em", transform: "translateY(6px)"}} /> }
+            {props.valido ? <Car className="green" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} /> : <Car className="red" style={{ fontSize: "1.5em", transform: "translateY(6px)"}} /> }
         </>
     } else if(props.tipoCombustivel === "aeronaves") {
         return <>
-            {props.valido ? <FaPlaneCircleCheck className="green" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} /> : <FaPlaneCircleExclamation className="red" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} />}
+            {props.valido ? <Plane className="green" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} /> : <Plane className="red" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} />}
         </>
     } else if (props.tipoCombustivel === "embarcacoes") {
         return <>
-            {props.valido ? <IoBoat className="green" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} /> : <IoBoat className="red" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} />}
+            {props.valido ? <Ship className="green" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} /> : <Ship className="red" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} />}
         </>
     }
 }
@@ -111,7 +109,7 @@ export default function DeputadoCombustiveis(props: { combustiveis: any, deputad
             </div>
             <div className="despesas">
                 <div className="despesa" style={{ maxWidth: "80%", width: "fit-content" }}>
-                    <h2><FaMagnifyingGlassDollar style={{ fontSize: "1.3em", transform: "translateY(6px)" }} /> Observações</h2>
+                    <h2><Search style={{ fontSize: "1.3em", transform: "translateY(6px)" }} /> Observações</h2>
                     {
                         fornecedor?.fornecedor && <p>
                             Gasto R$ {fornecedor.valorGasto} com <strong>{fornecedor.fornecedor}</strong> em {fornecedor.contratacoes} {fornecedor.contratacoes > 1 ? "contratações" : "contratação"} no mês {mes}.
@@ -139,12 +137,12 @@ export default function DeputadoCombustiveis(props: { combustiveis: any, deputad
                         setPagina(pagina - 1)
                     } 
                 }}>
-                    <IoIosArrowBack />
+                    <ArrowLeft />
                 </div>
                 <div onClick={() => {
                     setPagina(pagina + 1)
                 }}>
-                    <IoIosArrowForward />
+                    <ArrowRight />
                 </div>
             </div>
             <div style={{ textAlign: "center" }}>Página {pagina}</div>

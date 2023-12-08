@@ -1,10 +1,10 @@
 import "../styles/relatorios.scss";
 
 import { useState, useEffect } from "react";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
-import { BsCreditCard2FrontFill } from "react-icons/bs";
+import { ArrowLeft, ArrowRight, CreditCard } from "lucide-react";
 import formatDocument from "../formatDocument";
 import Loading from "./Loading";
+
 
 export default function DeputadoListaDespesa(props: { despesas: any, deputadoID: string, baseURL: string }) {
     const date = new Date()
@@ -46,7 +46,7 @@ export default function DeputadoListaDespesa(props: { despesas: any, deputadoID:
             <div className="despesas">
                 {despesas?.map((despesa, i) => (
                     <div className="despesa" key={`Despesa-${i}`} style={{ width: "55%" }}>
-                        <h2>{despesa.urlDocumento ? <BsCreditCard2FrontFill className="green" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} /> : <BsCreditCard2FrontFill className="red" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} />} R$ {despesa.valorLiquido}</h2>
+                        <h2>{despesa.urlDocumento ? <CreditCard className="green" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} /> : <CreditCard className="red" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} />} R$ {despesa.valorLiquido}</h2>
                         <p>Fornecedor: {despesa.fornecedor}</p>
                         <p>{despesa.cnpj ? `CNPJ: ${formatDocument(despesa.cnpj)}` : <span className="red">CNPJ ausente</span>}</p>
                         <p>Tipo: {despesa.descricao}</p>
@@ -65,12 +65,12 @@ export default function DeputadoListaDespesa(props: { despesas: any, deputadoID:
                         setPagina(pagina - 1)
                     } 
                 }}>
-                    <IoIosArrowBack />
+                    <ArrowLeft />
                 </div>
                 <div onClick={() => {
                     setPagina(pagina + 1)
                 }}>
-                    <IoIosArrowForward />
+                    <ArrowRight />
                 </div>
             </div>
             <div style={{ textAlign: "center" }}>Página {pagina}</div>

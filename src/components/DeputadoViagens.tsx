@@ -1,12 +1,11 @@
 import "../styles/relatorios.scss";
 
 import { useState, useEffect } from "react";
-import { FaPlaneCircleCheck, FaPlaneCircleExclamation, FaMagnifyingGlassDollar } from "react-icons/fa6";
-import { FaPlaneArrival, FaPlaneDeparture } from "react-icons/fa";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
+import { Search, ArrowLeft, ArrowRight, PlaneTakeoff, PlaneLanding, Plane } from "lucide-react";
 import formatDocument from "../formatDocument";
 import Modal from "./Modal";
 import Loading from "./Loading";
+
 
 function calculaTotal(fornecedores: any) {
     let total = 0
@@ -16,9 +15,6 @@ function calculaTotal(fornecedores: any) {
     }
 
     return total.toFixed(2)
-}
-
-function Trecho(props: { trecho: string, baseURL: string, setTrecho: any, id: string }) {
 }
 
 export default function DeputadoViagens(props: { viagens: any, deputadoID: string, baseURL: string }) {
@@ -109,7 +105,7 @@ export default function DeputadoViagens(props: { viagens: any, deputadoID: strin
             </div>
             <div className="despesas">
                 <div className="despesa">
-                    <h2><FaMagnifyingGlassDollar style={{ fontSize: "1.3em", transform: "translateY(6px)" }} /> Fornecedores</h2>
+                    <h2><Search style={{ fontSize: "1.3em", transform: "translateY(6px)" }} /> Fornecedores</h2>
                     {
                         fornecedores.map((fornecedor, i) => (
                             <p key={`Fornecedor-${i}`}>{fornecedor.fornecedor}: R$ {fornecedor.valorGasto} em {fornecedor.contratacoes} {fornecedor.contratacoes < 2 ? "contratação" : "contratações"}</p>
@@ -119,7 +115,7 @@ export default function DeputadoViagens(props: { viagens: any, deputadoID: strin
                 </div>
                 {despesas.map((despesa, i) => (
                     <div className="despesa" key={`Viagem-${i}`}>
-                        <h2>{despesa.comprovante != "" ? <FaPlaneCircleCheck className="green" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} /> : <FaPlaneCircleExclamation className="red" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} />} R$ {despesa.valor}</h2>
+                        <h2>{despesa.comprovante != "" ? <Plane className="green" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} /> : <Plane className="red" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} />} R$ {despesa.valor}</h2>
                         <p>Empresa: {despesa.companhia}</p>
                         <p>{despesa.cnpj ? `CNPJ: ${formatDocument(despesa.cnpj)}` : <span className="red">CNPJ ausente</span>}</p>
                         <p>Emitido em {new Date(despesa.dataEmissao).toLocaleDateString("pt-br", { dateStyle: "long" })}</p>
@@ -136,21 +132,21 @@ export default function DeputadoViagens(props: { viagens: any, deputadoID: strin
                                         <>
                                             {
                                                 i === 0 && <>
-                                                    <p><FaPlaneDeparture /> Saindo de {trecho.city}</p>
+                                                    <p><PlaneTakeoff /> Saindo de {trecho.city}</p>
                                                     <p style={{ fontSize: "0.8em" }}>{trecho.name}</p>
                                                     <br />
                                                 </>
                                             }
                                             {
                                                 i > 0 && i < trechosDetalhes.length - 1 && <>
-                                                    <p><FaPlaneArrival /> Pouso de escala em {trecho.city} <FaPlaneDeparture /></p>
+                                                    <p><PlaneLanding /> Pouso de escala em {trecho.city} <PlaneTakeoff /></p>
                                                     <p style={{ fontSize: "0.8em" }}>{trecho.name}</p>
                                                     <br />
                                                 </>
                                             }
                                             {
                                                 i === trechosDetalhes.length - 1 && <>
-                                                    <p><FaPlaneArrival /> Pouso final em {trecho.city}</p>
+                                                    <p><PlaneLanding /> Pouso final em {trecho.city}</p>
                                                     <p style={{ fontSize: "0.8em" }}>{trecho.name}</p>
                                                 </>
                                             }
@@ -176,12 +172,12 @@ export default function DeputadoViagens(props: { viagens: any, deputadoID: strin
                         setPagina(pagina - 1)
                     } 
                 }}>
-                    <IoIosArrowBack />
+                    <ArrowLeft />
                 </div>
                 <div onClick={() => {
                     setPagina(pagina + 1)
                 }}>
-                    <IoIosArrowForward />
+                    <ArrowRight />
                 </div>
             </div>
             <div style={{ textAlign: "center" }}>Página {pagina}</div>
