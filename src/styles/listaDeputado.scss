@@ -13,6 +13,7 @@ main {
     #painel {
         display: flex;
         justify-content: center;
+        flex-wrap: wrap;
         width: 70%;
         margin: auto;
         margin-top: 8vh;
@@ -36,6 +37,7 @@ main {
         select {
             display: block;
             background-color: colors.$light;
+            padding: 10px;
 
             border: 1px solid #34312d29;
 

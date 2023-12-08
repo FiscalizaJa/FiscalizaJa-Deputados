@@ -8,6 +8,19 @@ header {
         align-items: center;
         justify-content: center;
 
+        @media screen and (max-width: 890px) {
+            flex-direction: column;
+
+           img {
+                margin-left: -2.5rem;
+                margin-top: -3rem;
+           }
+
+            div {
+                margin-top: 3vh;
+            }
+        }
+
         img {
             object-fit: contain;
             max-width: 100%;

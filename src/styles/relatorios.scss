@@ -63,8 +63,15 @@
             }
 
             p {
-                font-size: 1em
-                ;
+                font-size: 1em;
+            }
+
+            @media screen and (max-width: 1000px) {
+                width: 85%;
+            }
+
+            @media screen and (max-width: 540px) {
+                width: 95%;
             }
 
             .consulta {

@@ -33,6 +33,16 @@
                     color: colors.$mid;
                 }
             }
+
+            @media screen and (max-width: 600px) {
+                p {
+                    display: none;
+                }
+
+                #nav-links {
+                    justify-content: center;
+                }
+            }
         }
     
     }
