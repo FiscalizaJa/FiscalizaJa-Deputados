@@ -56,7 +56,15 @@ main {
     width: 70%;
     margin: auto;
     margin-top: 2rem;
-    
+
+    @media screen and (max-width: 1000px) {
+        width: 85%;
+    }
+
+    @media screen and (max-width: 540px) {
+        width: 90%;
+    }
+     
     #line {
         border: 1px solid #34312d29;
         box-shadow: 0px 0px 1px #34312d3d;

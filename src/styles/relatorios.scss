@@ -44,7 +44,8 @@
         gap: 15px;
 
         .despesa {
-            width: 45%;
+            width: fit-content;
+            max-width: 420px;
             margin: auto;
 
             border-radius: 8px;
@@ -68,11 +69,13 @@
             }
 
             @media screen and (max-width: 1000px) {
-                width: 85%;
+                width: 55%;
+                max-width: none;
             }
 
             @media screen and (max-width: 540px) {
-                width: 95%;
+                width: 100%;
+                max-width: none;
             }
 
             .consulta {
