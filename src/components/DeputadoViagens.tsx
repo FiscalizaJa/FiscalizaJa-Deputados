@@ -75,7 +75,7 @@ export default function DeputadoViagens(props: { viagens: any, deputadoID: strin
         } else {
             setTrechosDetalhes(null)
         }
-    }, [trechos])
+    }, [trechoAberto])
 
     return (
         <section className="relatorio">
