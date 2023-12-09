@@ -13,7 +13,7 @@ header {
 
            img {
                 margin-left: -2.5rem;
-                margin-top: -3rem;
+                margin-top: -1rem;
            }
 
             div {
@@ -30,6 +30,9 @@ header {
     #see {
         display: block;
         width: fit-content;
+
+        z-index: 99;
+        position: absolute;
 
         margin-top: 0.4rem;
         padding: 8px 16px;
