@@ -43,7 +43,7 @@ const locomocao = data[5].data
 export const prerender = false
 ---
 
-<BaseLayout title={`${deputado.siglaSexo === "M" ? "Deputado" : "Deputada"} Federal ${deputado.nome} | FiscalizaJá Deputados`} description={`Informações realmente úteis sobre os gastos ${deputado.siglaSexo === "m" ? "do deputado" : "da deputada"} ${deputado.nome}`}>
+<BaseLayout title={`${deputado.siglaSexo === "M" ? "Deputado" : "Deputada"} Federal ${deputado.nome} | FiscalizaJá Deputados`} description={`Informações realmente úteis sobre os gastos ${deputado.siglaSexo === "m" ? "do deputado" : "da deputada"} ${deputado.nome}. Venha para o FiscalizaJá e descubra o que é transparência política.`}>
     <DeputadoHeader deputado={deputado} />
     <DeputadoBody todas_despesas={lista_despesas} deputado={deputado} viagens={viagens} combustiveis={combustiveis} alimentacao={alimentacao} locomocao={locomocao} baseURL={import.meta.env.PUBLIC_API_URL} client:load/>
 </BaseLayout>
