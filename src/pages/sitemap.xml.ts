@@ -42,7 +42,7 @@ export async function GET() {
                         <changefreq>daily</changefreq>
                     </url>
                 `
-            })}
+            }).join("\n")}
         </urlset>
     `, {
         headers: {
