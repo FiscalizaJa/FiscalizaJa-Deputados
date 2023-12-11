@@ -1,0 +1,68 @@
+@use "colors";
+
+header {
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 8vh;
+    padding: 30px;
+
+    h1, p {
+        width: fit-content;
+        margin: auto;
+    }
+}
+
+main {
+
+    .warn {
+        display: flex;
+        align-items: center;
+        width: fit-content;
+        margin: auto
+    }
+
+    #input-container {
+        max-width: 330px;
+        margin: auto;       
+    }
+
+    input[type=text] {
+        display: block;
+        margin: 0 auto 0.5rem auto;
+        background-color: colors.$light;
+        padding: 10px;
+        width: 100%;
+        
+        border: 1px solid #34312d29;
+        border-radius: 8px;
+
+        box-shadow: 0px 0px 1px #34312d3d;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    #chart {
+        max-width: 1330px;
+        width: fit-content;
+
+        margin: auto;
+    }
+}
+
+.tiny-loader {
+    border: 5px solid colors.$mid;
+    border-top: 5px solid colors.$dark;
+    border-left: 5px solid colors.$dark;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin-tiny 2s linear infinite;
+    margin: auto;
+}
+  
+@keyframes spin-tiny {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
