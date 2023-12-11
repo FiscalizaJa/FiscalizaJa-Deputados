@@ -11,41 +11,59 @@ header {
 }
 
 main {
-    #painel {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        width: 70%;
+    #text-input-container {
         margin: auto;
-        margin-top: 8vh;
-        margin-bottom: 3vh;
+        max-width: 320px;
 
         input[type=text] {
             display: block;
+            margin: 0 auto 0.5rem auto;
             background-color: colors.$light;
             padding: 10px;
-            width: 35%;
+            width: 100%;
             
             border: 1px solid #34312d29;
-
+            border-radius: 8px;
+    
             box-shadow: 0px 0px 1px #34312d3d;
-
+    
             &:focus {
                 outline: none;
             }
         }
+    }
 
-        select {
-            display: block;
-            background-color: colors.$light;
-            padding: 10px;
+    #painel {
+        width: 95%;
+        margin: auto;
+        margin-top: 8vh;
+        margin-bottom: 3vh;
 
-            border: 1px solid #34312d29;
+        #seletores {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
 
-            box-shadow: 0px 0px 1px #34312d3d;
+            select {
+                display: block;
+                background-color: colors.$light;
+                padding: 10px;
+    
+                border: 1px solid #34312d29;
+    
+                box-shadow: 0px 0px 1px #34312d3d;
+    
+                &:focus {
+                    outline: none;
+                }
+            }
 
-            &:focus {
-                outline: none;
+            @media screen and (max-width: 340px) {
+                gap: 8px;
+
+                select {
+                    border-radius: 8px !important;
+                }
             }
         }
     }
