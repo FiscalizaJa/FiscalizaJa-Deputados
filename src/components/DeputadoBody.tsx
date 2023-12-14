@@ -8,7 +8,16 @@ import DeputadoAlimentacao from "./DeputadoAlimentacao";
 import DeputadoLocomocao from "./DeputadoLocomocao";
 import DeputadoListaDespesa from "./DeputadoListaDespesa";
 
-export default function DeputadoBody(props: { deputado: any, todas_despesas: any, viagens: any, combustiveis: any, alimentacao: any, locomocao: any, baseURL: string }) {
+import type { Deputado } from "../interfaces/Deputado";
+import type { Despesa } from "../interfaces/Despesa";
+import type { Viagem } from "../interfaces/Viagem";
+import type { Combustivel } from "../interfaces/Combustivel";
+import type { Alimentacao } from "../interfaces/Alimentacao";
+import type { Locomocao } from "../interfaces/Locomocao";
+
+import type { Fornecedor } from "../interfaces/Fornecedor";
+
+export default function DeputadoBody(props: { deputado: Deputado, todas_despesas: Despesa[], viagens: { viagens: Viagem[], fornecedores: Fornecedor[] }, combustiveis: { combustiveis: Combustivel[], fornecedores: Fornecedor[] }, alimentacao: { alimentacao: Alimentacao[], fornecedores: Fornecedor[] }, locomocao: { locomocao: Locomocao[], fornecedores: Fornecedor[] }, baseURL: string }) {
     const [section, setSection] = useState("viagens")
     
     return (
@@ -35,7 +44,7 @@ export default function DeputadoBody(props: { deputado: any, todas_despesas: any
                 <div id="content">
                     { section === "viagens" && <DeputadoViagens viagens={props.viagens} deputadoID={props.deputado.idCamara} baseURL={props.baseURL} /> }
                     { section === "combustiveis" && <DeputadoCombustiveis combustiveis={props.combustiveis} deputadoID={props.deputado.idCamara} baseURL={props.baseURL} /> }
-                    { section === "alimentacao" && <DeputadoAlimentacao alimentacao={props.combustiveis} deputadoID={props.deputado.idCamara} baseURL={props.baseURL} />}
+                    { section === "alimentacao" && <DeputadoAlimentacao alimentacao={props.alimentacao} deputadoID={props.deputado.idCamara} baseURL={props.baseURL} />}
                     { section === "locomocao" && <DeputadoLocomocao locomocao={props.locomocao} deputadoID={props.deputado.idCamara} baseURL={props.baseURL} />}
                     { section === "todas" && <DeputadoListaDespesa despesas={props.todas_despesas} deputadoID={props.deputado.idCamara} baseURL={props.baseURL} /> }  
                 </div>

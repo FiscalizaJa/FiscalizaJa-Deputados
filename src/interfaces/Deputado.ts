@@ -4,7 +4,7 @@ interface Deputado {
     operational?: number,
     nome: string,
     urlFoto: string,
-    idCamara: number,
+    idCamara: string,
     idLegislaturaInicial: number,
     idLegislaturaFinal: number,
     nomeCivil: string,

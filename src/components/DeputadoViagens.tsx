@@ -6,6 +6,8 @@ import formatDocument from "../formatDocument";
 import Modal from "./Modal";
 import Loading from "./Loading";
 
+import type { Viagem } from "../interfaces/Viagem";
+import type { Fornecedor } from "../interfaces/Fornecedor";
 
 function calculaTotal(fornecedores: any) {
     let total = 0
@@ -17,7 +19,7 @@ function calculaTotal(fornecedores: any) {
     return total.toFixed(2)
 }
 
-export default function DeputadoViagens(props: { viagens: any, deputadoID: string, baseURL: string }) {
+export default function DeputadoViagens(props: { viagens: { viagens: Viagem[], fornecedores: Fornecedor[] }, deputadoID: string, baseURL: string }) {
     const date = new Date()
 
     const [fornecedores, setFornecedores] = useState(props.viagens.fornecedores)

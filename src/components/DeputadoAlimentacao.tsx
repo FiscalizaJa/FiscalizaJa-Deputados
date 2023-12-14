@@ -3,7 +3,10 @@ import "../styles/relatorios.scss";
 import { useState, useEffect } from "react";
 import { Search, UtensilsCrossed, ArrowLeft, ArrowRight } from "lucide-react"
 import formatDocument from "../formatDocument";
-import Loading from "./Loading"; // CONTINUAR MIGRAÇÃO PRO LUCIDE
+import Loading from "./Loading";
+
+import type { Alimentacao } from "../interfaces/Alimentacao";
+import type { Fornecedor } from "../interfaces/Fornecedor";
 
 function calculaTotal(fornecedores: any) {
     let total = 0
@@ -16,7 +19,7 @@ function calculaTotal(fornecedores: any) {
 }
 
 
-export default function DeputadoAlimentacao(props: { alimentacao: any, deputadoID: string, baseURL: string }) {
+export default function DeputadoAlimentacao(props: { alimentacao: { alimentacao: Alimentacao[], fornecedores: Fornecedor[] }, deputadoID: string, baseURL: string }) {
     const date = new Date()
 
     const [fornecedores, setFornecedores] = useState(props.alimentacao.fornecedores)

@@ -5,6 +5,8 @@ import { Car, Plane, Ship, Search, ArrowLeft, ArrowRight } from "lucide-react";
 import formatDocument from "../formatDocument";
 import Loading from "./Loading";
 
+import type { Combustivel } from "../interfaces/Combustivel";
+import type { Fornecedor } from "../interfaces/Fornecedor";
 
 function calculaTotal(fornecedores: any) {
     let total = 0
@@ -32,7 +34,7 @@ function Icon(props: { tipoCombustivel: string, valido: boolean }) {
     }
 }
 
-export default function DeputadoCombustiveis(props: { combustiveis: any, deputadoID: string, baseURL: string }) {
+export default function DeputadoCombustiveis(props: { combustiveis: { combustiveis: Combustivel[], fornecedores: Fornecedor[] }, deputadoID: string, baseURL: string }) {
     const date = new Date()
 
     const [tipoCombustivel, setTipo] = useState("veiculos")

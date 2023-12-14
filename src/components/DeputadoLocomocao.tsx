@@ -5,6 +5,9 @@ import { Search, ArrowLeft, ArrowRight, CarTaxiFront } from "lucide-react";
 import formatDocument from "../formatDocument";
 import Loading from "./Loading";
 
+import type { Locomocao } from "../interfaces/Locomocao";
+import type { Fornecedor } from "../interfaces/Fornecedor";
+
 function calculaTotal(fornecedores: any) {
     let total = 0
 
@@ -16,7 +19,7 @@ function calculaTotal(fornecedores: any) {
 }
 
 
-export default function DeputadoLocomocao(props: { locomocao: any, deputadoID: string, baseURL: string }) {
+export default function DeputadoLocomocao(props: { locomocao: { locomocao: Locomocao[], fornecedores: Fornecedor[] }, deputadoID: string, baseURL: string }) {
     const date = new Date()
 
     const [fornecedores, setFornecedores] = useState(props.locomocao.fornecedores)

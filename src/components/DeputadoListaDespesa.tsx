@@ -5,8 +5,9 @@ import { ArrowLeft, ArrowRight, CreditCard } from "lucide-react";
 import formatDocument from "../formatDocument";
 import Loading from "./Loading";
 
+import type { Despesa } from "../interfaces/Despesa";
 
-export default function DeputadoListaDespesa(props: { despesas: any, deputadoID: string, baseURL: string }) {
+export default function DeputadoListaDespesa(props: { despesas: Despesa[], deputadoID: string, baseURL: string }) {
     const date = new Date()
 
     const [despesas, setDespesas] = useState(props.despesas)
@@ -51,7 +52,7 @@ export default function DeputadoListaDespesa(props: { despesas: any, deputadoID:
                     <div className="despesa" key={`Despesa-${i}`} style={{ width: "55%" }}>
                         <h2>{despesa.urlDocumento ? <CreditCard className="green" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} /> : <CreditCard className="red" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} />} R$ {despesa.valorLiquido}</h2>
                         <p>Fornecedor: {despesa.fornecedor}</p>
-                        <p>{despesa.cnpj ? `CNPJ: ${formatDocument(despesa.cnpj)}` : <span className="red">CNPJ ausente</span>}</p>
+                        <p>{despesa.cnpjCPF ? `CNPJ: ${formatDocument(despesa.cnpjCPF)}` : <span className="red">CNPJ ausente</span>}</p>
                         <p>Tipo: {despesa.descricao}</p>
                         <p>Emitido em {new Date(despesa.dataEmissao).toLocaleDateString("pt-br", { dateStyle: "long" })}</p>
                         {despesa.urlDocumento != "" ? <a href={despesa.urlDocumento} target="_blank">Ver comprovante</a> : <p className="red">Comprovante ausente.</p>}
