@@ -42,7 +42,7 @@ export default function DeputadoCombustiveis(props: { combustiveis: { combustive
     const [despesas, setDespesas] = useState(props.combustiveis.combustiveis)
 
     const [ano, setAno] = useState(date.getFullYear())
-    const [mes, setMes] = useState(date.getMonth() + 1) // CONTINUAR O FILTRO!
+    const [mes, setMes] = useState(date.getMonth() + 1)
     const [fornecedor, setFornecedor] = useState(null)
     const [pagina, setPagina] = useState(1)
 
