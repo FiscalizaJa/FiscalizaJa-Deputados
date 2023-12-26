@@ -2,17 +2,17 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 import "../styles/consulta-fornecedor.scss"
+import "../styles/loading.scss"
 
 import ConsultaFornecedorMain from "../components/ConsultaFornecedorMain"
 ---
 
 <BaseLayout title="FiscalizaJá: Consulta de fornecedores em despesas da câmara | Saiba o quanto a câmara gasta com cada empresa/pessoa" description="Consultar fornecedores específicos é um recuso exclusivo do FiscalizaJá. Nenhum jornal ou site de fiscalização te dá essa mesma possibilidade!">
     <header>
-        <h1>Consulta de fornecedor</h1>
-        <p>Saiba o quanto a câmara gastou com um fornecedor por ano.</p>
-        <p>Este recurso é experimental e pode apresentar falhas e bugs.</p>
+        <h1>Consulta de CNPJ/CPF</h1>
+        <p>Consulte um CNPJ/CPF e encontre informações sobre o quanto a câmara gastou com ele. Também, quais deputados foram os que mais gastaram com esse fornecedor.</p>
     </header>
     <main>
-        <ConsultaFornecedorMain client:only />
+        <ConsultaFornecedorMain client:load />
     </main>
 </BaseLayout>

@@ -10,9 +10,18 @@ header {
         width: fit-content;
         margin: auto;
     }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    p {
+        font-size: 1.05em;
+    }
 }
 
 main {
+    margin-bottom: 4rem;
 
     .warn {
         display: flex;
@@ -21,14 +30,29 @@ main {
         margin: auto
     }
 
-    #input-container {
+    .input-container {
         max-width: 330px;
         margin: auto;       
     }
 
-    input[type=text] {
+    button {
         display: block;
-        margin: 0 auto 0.5rem auto;
+
+        border-radius: 8px;
+        border: none;
+        margin: auto;
+
+        cursor: pointer;
+
+        background-color: colors.$primary;
+        color: colors.$light;
+
+        padding: 10px;
+    }
+
+    input[type=text], select {
+        display: block;
+        margin: 0.5rem auto 0.5rem auto;
         background-color: colors.$light;
         padding: 10px;
         width: 100%;
@@ -43,11 +67,91 @@ main {
         }
     }
 
-    #chart {
-        max-width: 1330px;
-        width: fit-content;
+    .bar-chart {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
 
+        max-width: 600px;
+        width: 100%;
         margin: auto;
+        margin-top: 2.5rem;
+
+        overflow-x: auto;
+
+        h2 {
+            font-weight: normal;
+            text-align: center;
+        }
+
+        .chart-value {
+            @media screen and (max-width: 360px) {
+                display: none;
+            }
+        }
+
+        .chart-item {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: left;
+            gap: 18px;
+
+            width: 100%;
+            padding: 8px;
+
+            p {
+                min-width: 50px;
+                max-width: 200px;
+                font-size: 1em;
+            }
+
+            .img-container {
+                width: 30px;
+                height: 30px;
+
+                overflow: hidden;
+
+                border-radius: 50%;
+
+                img {
+                    object-fit: contain;
+                }
+
+                @media screen and (max-width: 360px) {
+                    display: none;
+                }
+            }
+
+            .bar {
+                padding: 8px;
+                height: 18px;
+                background-color: colors.$secondary;
+            }
+
+            .details {
+                display: none;
+                position: absolute;
+                background-color: colors.$light;
+                box-shadow: 0px 0px 1px #34312d3d;
+
+                padding: 10px;
+                left: 50%;
+                transform: translate(-50%, -15px);
+
+                p {
+                    font-size: 1em;
+                }
+            }
+
+            @media screen and (max-width: 360px) {
+                &:hover {
+                    .details {
+                        display: block
+                    }
+                }
+            }
+        }
     }
 }
 
