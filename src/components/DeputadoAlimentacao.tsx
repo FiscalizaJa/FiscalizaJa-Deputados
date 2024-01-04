@@ -21,6 +21,7 @@ function calculaTotal(fornecedores: any) {
 
 export default function DeputadoAlimentacao(props: { alimentacao: { alimentacao: Alimentacao[], fornecedores: Fornecedor[] }, deputadoID: string, baseURL: string }) {
     const date = new Date()
+    const currentMonth = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1).toString() : date.getMonth() + 1
 
     const [fornecedores, setFornecedores] = useState(props.alimentacao.fornecedores)
     const [despesas, setDespesas] = useState(props.alimentacao.alimentacao)
@@ -73,7 +74,7 @@ export default function DeputadoAlimentacao(props: { alimentacao: { alimentacao:
                         </option>
                     ))}
                 </select>
-                <input type="month" defaultValue={`${date.getFullYear()}-${date.getMonth() + 1}`} max={`${date.getFullYear()}-${date.getMonth() + 1}`} min="2009-01" onChange={(e) => {
+                <input type="month" defaultValue={`${date.getFullYear()}-${currentMonth}`} max={`${date.getFullYear()}-${currentMonth}`} min="2009-01" onChange={(e) => {
                     const values = e.currentTarget.value.split("-")
                     const year = Number(values[0])
                     const month = Number(values[1])

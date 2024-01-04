@@ -9,6 +9,7 @@ import type { Despesa } from "../interfaces/Despesa";
 
 export default function DeputadoListaDespesa(props: { despesas: Despesa[], deputadoID: string, baseURL: string }) {
     const date = new Date()
+    const currentMonth = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1).toString() : date.getMonth() + 1
 
     const [despesas, setDespesas] = useState(props.despesas)
 
@@ -37,7 +38,7 @@ export default function DeputadoListaDespesa(props: { despesas: Despesa[], deput
     return (
         <section className="relatorio">
             <div id="painel">
-            <input type="month" defaultValue={`${date.getFullYear()}-${date.getMonth() + 1}`} max={`${date.getFullYear()}-${date.getMonth() + 1}`} min="2009-01" onChange={(e) => {
+            <input type="month" defaultValue={`${date.getFullYear()}-${currentMonth}`} max={`${date.getFullYear()}-${currentMonth}`} min="2009-01" onChange={(e) => {
                     const values = e.currentTarget.value.split("-")
                     const year = Number(values[0])
                     const month = Number(values[1])

@@ -36,6 +36,7 @@ function Icon(props: { tipoCombustivel: string, valido: boolean }) {
 
 export default function DeputadoCombustiveis(props: { combustiveis: { combustiveis: Combustivel[], fornecedores: Fornecedor[] }, deputadoID: string, baseURL: string }) {
     const date = new Date()
+    const currentMonth = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1).toString() : date.getMonth() + 1
 
     const [tipoCombustivel, setTipo] = useState("veiculos")
     const [fornecedores, setFornecedores] = useState(props.combustiveis.fornecedores)
@@ -102,7 +103,7 @@ export default function DeputadoCombustiveis(props: { combustiveis: { combustive
                         Embarcações
                     </option>
                 </select>
-                <input type="month" defaultValue={`${date.getFullYear()}-${date.getMonth() + 1}`} max={`${date.getFullYear()}-${date.getMonth() + 1}`} min="2009-01" onChange={(e) => {
+                <input type="month" defaultValue={`${date.getFullYear()}-${currentMonth}`} max={`${date.getFullYear()}-${currentMonth}`} min="2009-01" onChange={(e) => {
                     const values = e.currentTarget.value.split("-")
                     const year = Number(values[0])
                     const month = Number(values[1])
