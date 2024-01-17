@@ -12,11 +12,6 @@ const date = new Date()
 
 const request_promises = [
     fetch(`${baseURL}/deputados/${id}`),
-    fetch(`${baseURL}/deputados/${id}/despesas`),
-    fetch(`${baseURL}/relatorios/${id}/viagens?ano=${date.getFullYear()}&mes=${date.getMonth() + 1}`),
-    fetch(`${baseURL}/relatorios/${id}/combustiveis/veiculos?ano=${date.getFullYear()}&mes=${date.getMonth() + 1}`),
-    fetch(`${baseURL}/relatorios/${id}/alimentacao?ano=${date.getFullYear()}&mes=${date.getMonth() + 1}`),
-    fetch(`${baseURL}/relatorios/${id}/locomocao?ano=${date.getFullYear()}&mes=${date.getMonth() + 1}`)
 ]
 
 const serialize_promises = []
@@ -34,16 +29,12 @@ const deputado = data[0].data
 deputado.dataNascimento = new Date(deputado.dataNascimento)
 deputado.nomeCivil = deputado.nomeCivil.split(" ").map(nome => nome.charAt(0) + nome.slice(1).toLowerCase()).join(" ")
 
-const lista_despesas = data[1].data
-const viagens = data[2]?.data
-const combustiveis = data[3].data
-const alimentacao = data[4].data
-const locomocao = data[5].data
+const og_url = `https://www.camara.leg.br/internet/deputado/bandep/pagina_do_deputado/${deputado.idCamara}.jpg`
 
 export const prerender = false
 ---
 
-<BaseLayout title={`${deputado.siglaSexo === "M" ? "Deputado" : "Deputada"} Federal ${deputado.nome} | FiscalizaJá Deputados`} description={`Informações realmente úteis sobre os gastos ${deputado.siglaSexo === "m" ? "do deputado" : "da deputada"} ${deputado.nome}. Venha para o FiscalizaJá e descubra o que é transparência política.`}>
+<BaseLayout title={`${deputado.siglaSexo === "M" ? "Deputado" : "Deputada"} Federal ${deputado.nome} | FiscalizaJá Deputados`} description={`Despesas ${deputado.siglaSexo === "m" ? "do deputado" : "da deputada"} ${deputado.nome} com a cota parlamentar | FiscalizaJá Deputados`} og_img={og_url}>
     <DeputadoHeader deputado={deputado} />
-    <DeputadoBody todas_despesas={lista_despesas} deputado={deputado} viagens={viagens} combustiveis={combustiveis} alimentacao={alimentacao} locomocao={locomocao} baseURL={import.meta.env.PUBLIC_API_URL} client:load/>
+    <DeputadoBody deputado={deputado} baseURL={import.meta.env.PUBLIC_API_URL} client:load/>
 </BaseLayout>

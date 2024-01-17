@@ -19,12 +19,12 @@ function calculaTotal(fornecedores: any) {
 }
 
 
-export default function DeputadoLocomocao(props: { locomocao: { locomocao: Locomocao[], fornecedores: Fornecedor[] }, deputadoID: string, baseURL: string }) {
+export default function DeputadoLocomocao(props: { deputadoID: string, baseURL: string }) {
     const date = new Date()
     const currentMonth = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1).toString() : date.getMonth() + 1
 
-    const [fornecedores, setFornecedores] = useState(props.locomocao.fornecedores)
-    const [despesas, setDespesas] = useState(props.locomocao.locomocao)
+    const [fornecedores, setFornecedores] = useState([])
+    const [despesas, setDespesas] = useState([])
 
     const [ano, setAno] = useState(date.getFullYear())
     const [mes, setMes] = useState(date.getMonth() + 1)
@@ -85,7 +85,7 @@ export default function DeputadoLocomocao(props: { locomocao: { locomocao: Locom
                 }}/>
             </div>
             <div className="despesas">
-                <div className="despesa" style={{ maxWidth: "80%", width: "fit-content" }}>
+                <div className="despesa" style={{ width: "fit-content" }}>
                     <h2><Search style={{ fontSize: "1.3em", transform: "translateY(6px)" }} /> Observações</h2>
                     {
                         fornecedor?.fornecedor && <p>
@@ -96,7 +96,7 @@ export default function DeputadoLocomocao(props: { locomocao: { locomocao: Locom
                     <p>* <i style={{ fontSize: "0.9em" }}>Inclui serviços de táxi, pedágio e estacionamento.</i></p>
                 </div>
                 {despesas?.map((despesa, i) => (
-                    <div className="despesa" key={`Alimentacao-${i}`} style={{ width: "55%" }}>
+                    <div className="despesa" key={`Alimentacao-${i}`}>
                         <h2>{despesa.urlDocumento ? <CarTaxiFront className="green" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} /> : <CarTaxiFront className="red" style={{ fontSize: "1.5em", transform: "translateY(6px)" }} />} R$ {despesa.valor}</h2>
                         <p>Fornecedor: {despesa.fornecedor}</p>
                         <p>{despesa.cnpj ? `CNPJ: ${formatDocument(despesa.cnpj)}` : <span className="red">CNPJ ausente</span>}</p>

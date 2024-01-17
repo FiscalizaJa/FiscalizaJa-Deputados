@@ -44,7 +44,7 @@
         gap: 15px;
 
         .despesa {
-            width: fit-content;
+            width: 55%;
             max-width: 420px;
             margin: auto;
 
@@ -73,7 +73,7 @@
                 max-width: none;
             }
 
-            @media screen and (max-width: 540px) {
+            @media screen and (max-width: 625px) {
                 width: 100%;
                 max-width: none;
             }

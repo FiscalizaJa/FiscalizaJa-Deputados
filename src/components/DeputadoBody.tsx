@@ -9,22 +9,18 @@ import DeputadoLocomocao from "./DeputadoLocomocao";
 import DeputadoListaDespesa from "./DeputadoListaDespesa";
 
 import type { Deputado } from "../interfaces/Deputado";
-import type { Despesa } from "../interfaces/Despesa";
-import type { Viagem } from "../interfaces/Viagem";
-import type { Combustivel } from "../interfaces/Combustivel";
-import type { Alimentacao } from "../interfaces/Alimentacao";
-import type { Locomocao } from "../interfaces/Locomocao";
 
-import type { Fornecedor } from "../interfaces/Fornecedor";
-
-export default function DeputadoBody(props: { deputado: Deputado, todas_despesas: Despesa[], viagens: { viagens: Viagem[], fornecedores: Fornecedor[] }, combustiveis: { combustiveis: Combustivel[], fornecedores: Fornecedor[] }, alimentacao: { alimentacao: Alimentacao[], fornecedores: Fornecedor[] }, locomocao: { locomocao: Locomocao[], fornecedores: Fornecedor[] }, baseURL: string }) {
-    const [section, setSection] = useState("viagens")
+export default function DeputadoBody(props: { deputado: Deputado, baseURL: string }) {
+    const [section, setSection] = useState("todas")
     
     return (
         <>
             <main>
                 <div id="relatorios-painel">
-                    <div id="first" className={section === "viagens" ? "selected" : ""} onClick={() => {
+                    <div id="first" className={section === "todas" ? "selected" : ""} onClick={() => {
+                        setSection("todas")
+                    }}>Todas despesas</div>
+                    <div className={section === "viagens" ? "selected" : ""} onClick={() => {
                         setSection("viagens")
                     }}>Viagens</div>
                     <div className={section === "combustiveis" ? "selected" : ""} onClick={() => {
@@ -33,20 +29,17 @@ export default function DeputadoBody(props: { deputado: Deputado, todas_despesas
                     <div className={section === "alimentacao" ? "selected" : ""} onClick={() => {
                         setSection("alimentacao")
                     }}>Alimentação</div>
-                    <div className={section === "locomocao" ? "selected" : ""} onClick={() => {
+                    <div id="last" className={section === "locomocao" ? "selected" : ""} onClick={() => {
                         setSection("locomocao")
                     }}>Locomoção</div>
-                    <div id="last" className={section === "todas" ? "selected" : ""} onClick={() => {
-                        setSection("todas")
-                    }}>Todas despesas</div>
                 </div>
                 <div id="line" />
                 <div id="content">
-                    { section === "viagens" && <DeputadoViagens viagens={props.viagens} deputadoID={props.deputado.idCamara} baseURL={props.baseURL} /> }
-                    { section === "combustiveis" && <DeputadoCombustiveis combustiveis={props.combustiveis} deputadoID={props.deputado.idCamara} baseURL={props.baseURL} /> }
-                    { section === "alimentacao" && <DeputadoAlimentacao alimentacao={props.alimentacao} deputadoID={props.deputado.idCamara} baseURL={props.baseURL} />}
-                    { section === "locomocao" && <DeputadoLocomocao locomocao={props.locomocao} deputadoID={props.deputado.idCamara} baseURL={props.baseURL} />}
-                    { section === "todas" && <DeputadoListaDespesa despesas={props.todas_despesas} deputadoID={props.deputado.idCamara} baseURL={props.baseURL} /> }  
+                    { section === "todas" && <DeputadoListaDespesa deputadoID={props.deputado.idCamara} baseURL={props.baseURL} /> }
+                    { section === "viagens" && <DeputadoViagens deputadoID={props.deputado.idCamara} baseURL={props.baseURL} /> }
+                    { section === "combustiveis" && <DeputadoCombustiveis deputadoID={props.deputado.idCamara} baseURL={props.baseURL} /> }
+                    { section === "alimentacao" && <DeputadoAlimentacao deputadoID={props.deputado.idCamara} baseURL={props.baseURL} />}
+                    { section === "locomocao" && <DeputadoLocomocao deputadoID={props.deputado.idCamara} baseURL={props.baseURL} />}  
                 </div>
             </main>
         </>

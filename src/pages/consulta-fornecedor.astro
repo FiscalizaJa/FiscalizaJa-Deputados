@@ -5,14 +5,16 @@ import "../styles/consulta-fornecedor.scss"
 import "../styles/loading.scss"
 
 import ConsultaFornecedorMain from "../components/ConsultaFornecedorMain"
+
+const baseURL = import.meta.env.PUBLIC_API_URL
 ---
 
-<BaseLayout title="FiscalizaJá: Consulta de fornecedores em despesas da câmara | Saiba o quanto a câmara gasta com cada empresa/pessoa" description="Consultar fornecedores específicos é um recuso exclusivo do FiscalizaJá. Nenhum jornal ou site de fiscalização te dá essa mesma possibilidade!">
+<BaseLayout title="Consulta de fornecedores da câmara | FiscalizaJá" description="Consulte CNPJ ou CPF nas despesas da câmara e saiba o quanto foi gasto por ano e quais deputados mais gastaram.">
     <header>
         <h1>Consulta de CNPJ/CPF</h1>
-        <p>Consulte um CNPJ/CPF e encontre informações sobre o quanto a câmara gastou com ele. Também, quais deputados foram os que mais gastaram com esse fornecedor.</p>
+        <p>Consulte um CNPJ ou CPF para saber o quanto a câmara gastou com ele. Há dados sobre gastos por ano e ranking de deputados que mais gastaram.</p>
     </header>
     <main>
-        <ConsultaFornecedorMain client:load />
+        <ConsultaFornecedorMain client:load baseURL={baseURL}/>
     </main>
 </BaseLayout>

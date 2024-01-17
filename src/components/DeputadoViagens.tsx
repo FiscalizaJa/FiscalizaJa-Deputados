@@ -19,19 +19,19 @@ function calculaTotal(fornecedores: any) {
     return total.toFixed(2)
 }
 
-export default function DeputadoViagens(props: { viagens: { viagens: Viagem[], fornecedores: Fornecedor[] }, deputadoID: string, baseURL: string }) {
+export default function DeputadoViagens(props: { deputadoID: string, baseURL: string }) {
     const date = new Date()
     const currentMonth = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1).toString() : date.getMonth() + 1
 
-    const [fornecedores, setFornecedores] = useState(props.viagens.fornecedores)
-    const [despesas, setDespesas] = useState(props.viagens.viagens)
+    const [fornecedores, setFornecedores] = useState([])
+    const [despesas, setDespesas] = useState([])
     const [trechoAberto, setTrechoAberto] = useState(null)
     const [trechos, setTrechos] = useState(null)
     const [trechosDetalhes, setTrechosDetalhes] = useState(null)
     const [trechoLoading, setTrechoLoading] = useState(null)
 
     const [ano, setAno] = useState(date.getFullYear())
-    const [mes, setMes] = useState(date.getMonth() + 1) // CONTINUAR O FILTRO!
+    const [mes, setMes] = useState(date.getMonth() + 1)
     const [fornecedor, setFornecedor] = useState(null)
     const [pagina, setPagina] = useState(1)
 
@@ -135,7 +135,7 @@ export default function DeputadoViagens(props: { viagens: { viagens: Viagem[], f
                                 <h2>Detalhes do trajeto</h2>
                                 {
                                     trechosDetalhes && trechosDetalhes.map((trecho, i) => (
-                                        <>
+                                        <span key={`Infos-Viagem-${i}`}>
                                             {
                                                 i === 0 && <>
                                                     <p><PlaneTakeoff /> Saindo de {trecho.city}</p>
@@ -156,7 +156,7 @@ export default function DeputadoViagens(props: { viagens: { viagens: Viagem[], f
                                                     <p style={{ fontSize: "0.8em" }}>{trecho.name}</p>
                                                 </>
                                             }
-                                        </>
+                                        </span>
                                     ))
                                 }
                                 {

@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import Modal from "./Modal";
+import formatDocument from "../formatDocument";
 
 function percentage(partialValue: number, totalValue: number) {
     return (100 * partialValue) / totalValue;
@@ -21,9 +23,9 @@ const months = {
     10: 'Outubro',
     11: 'Novembro',
     12: 'Dezembro'
-  };
+};
 
-export default function ConsultaFornecedorMain() {
+export default function ConsultaFornecedorMain(props: { baseURL: string }) {
     const currentDate = new Date()
 
     const [status, setStatus] = useState<"not_loaded" | "empty" | "loading" | "deputies_loading">("empty")    
@@ -38,6 +40,9 @@ export default function ConsultaFornecedorMain() {
     const [anoDeputados, setAnoDeputados] = useState("all")
     const [mesInicio, setMesInicio] = useState<number | string>("all")
     const [mesFinal, setMesFinal] = useState<number | string>()
+
+    const [modalCnpj, setModalCnpj] = useState(false)
+    const [cnpjResultados, setCnpjResultados] = useState([])
 
     function getFilters() {
         const meses = mesInicio !== "all" ? genArray(Number(mesInicio), Number(mesFinal)).map((m, i) => `${i === 0 ? "?" : "&"}mes=${m}`).join("") : ``
@@ -97,6 +102,13 @@ export default function ConsultaFornecedorMain() {
         setStatus("empty")
     }
 
+    async function pesquisaNome(nome: string) {
+        const request = await fetch(`${import.meta.env.PUBLIC_API_URL}/fornecedores/pesquisa?termo=${encodeURIComponent(nome)}`)
+        const response = await request.json()
+
+        setCnpjResultados(response.data)
+    }
+
     useEffect(() => {
         if(!ranking) return;
 
@@ -142,12 +154,15 @@ export default function ConsultaFornecedorMain() {
                 <input type="text" id="document" placeholder="07.575.651/0001-59" onChange={(e) => {
                     const value = e.currentTarget.value.replace(/[^0-9]/g, "")
                     
-                    if(value.length === 12 || value.length === 14) {
+                    if(value.length === 11 || value.length === 14) {
                         setValid(true)
                     } else {
                         setValid(false)
                     }
                 }} />
+                <div className="input-title">
+                    CNPJ ou CPF
+                </div>
                 <select id="mesInicio" onChange={(e) => {
                     setMesInicio(e.currentTarget.value)
                 }}>
@@ -176,11 +191,13 @@ export default function ConsultaFornecedorMain() {
                     } 
                 </select>
                 </span>
+                <p className="search-prompt" onClick={() => {
+                    setModalCnpj(true)
+                }}>Não sabe nenhum CNPJ ou CPF? Clique aqui para pesquisar por nome!</p>
                 <button name="Consultar CNPJ ou CPF" disabled={!valid} onClick={() => {
                     Consulta()
                 }}>Consultar</button>
             </div>
-
             {
             status === "loading" && <div style={{ marginTop: "2.5rem" }}>
                 <div className="loader" />
@@ -244,6 +261,31 @@ export default function ConsultaFornecedorMain() {
                     </div>
                 )) }
             </div>
+            {
+                modalCnpj && <Modal isOpen={true} onClose={() => { setModalCnpj(false) }}>
+                    <h2>Pesquisar CNPJs</h2>
+                    <p>Apenas digite o nome da empresa e pegue o cnpj da qual está procurando.</p>
+                    <input type="text" placeholder="Nome da empresa" id="search-cnpj"/>
+                    <button 
+                    style={{ margin: "0.8rem 0 0.8rem 0", fontSize: "0.9em" }}
+                    name="Pesquisar CNPJs para o nome informado"
+                    onClick={(e) => {
+                        const input = document.querySelector<HTMLInputElement>("#search-cnpj")
+                        pesquisaNome(input.value)
+                    }}
+                    >Pesquisar</button>
+                    <p style={{ fontSize: "0.8em" }}>Os nomes podem mudar devido a variações da mesma empresa nos dados.</p>
+                    <br />
+                    {
+                        cnpjResultados.map((result, i) => (
+                            <p key={`cnpj-${i}`} style={{ fontSize: "0.8em" }}>{formatDocument(result.cnpjCPF)} - {result.nomes[Math.floor(Math.random() * result.nomes.length)]}</p>
+                        ))
+                    }
+                    {
+                        !cnpjResultados?.length && <p style={{ fontSize: "0.8em" }}>Nenhum resultado.</p>
+                    }
+                </Modal>
+            }
         </>
     )
 }

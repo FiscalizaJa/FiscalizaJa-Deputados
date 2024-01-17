@@ -54,7 +54,7 @@ main {
         display: block;
         margin: 0.5rem auto 0.5rem auto;
         background-color: colors.$light;
-        padding: 10px;
+        padding: 12px;
         width: 100%;
         
         border: 1px solid #34312d29;
@@ -65,6 +65,15 @@ main {
         &:focus {
             outline: none;
         }
+    }
+
+    .input-title {
+        position: absolute;
+        transform: translate(0.4rem, -4.6em);
+
+        background-color: colors.$light;
+        color: colors.$mid;
+        font-size: 0.8em;
     }
 
     .bar-chart {
@@ -108,6 +117,7 @@ main {
 
             .img-container {
                 width: 30px;
+                min-width: 30px;
                 height: 30px;
 
                 overflow: hidden;
@@ -169,4 +179,13 @@ main {
 @keyframes spin-tiny {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+.search-prompt {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9em;
+    color: colors.$mid;
+
+    cursor: pointer;
 }

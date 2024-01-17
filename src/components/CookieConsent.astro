@@ -1,0 +1,53 @@
+---
+import "../styles/cookies.scss";
+
+import { Cookie } from "lucide-react";
+---
+
+<cookie-consent class="consent-container">
+    <h2><Cookie style={{ transform: "scale(1.6) translateY(3px)", marginRight: "22px" }}/> Consentimento de cookies</h2>
+    <p>Este website utiliza cookies para ajudar na avaliação de sua experiência.</p>
+    <p>A não-autorização do uso de cookies não afetará a usabilidade do site, no entanto, não poderemos saber como melhorar se você não nos permitir entender como usa nosso produto.</p>
+    <div id="consent-buttons">
+        <button id="accept" aria-label="Aceitar uso de cookies opcionais">Aceitar</button>
+        <button id="decline" aria-label="Rejeitar uso de cookies opcionais">Rejeitar</button>
+    </div>
+</cookie-consent>
+
+<script>
+    declare global {
+        interface Window {
+            clarity: any;
+        }
+    }
+
+    class CookieConsent extends HTMLElement {
+        constructor() {
+            super()
+            const status = localStorage.getItem("cookie-consent") as 'declined' | 'accepted' | null
+
+            if(!status) {
+                this.style.display = "block"
+            } else {
+                return;
+            }
+
+            const accept = this.querySelector("#accept")
+            const decline = this.querySelector("#decline")
+
+            accept.addEventListener("click", () => {
+                window.clarity("consent")
+                this.style.display = "none"
+                localStorage.setItem("cookie-consent", "accepted")
+            })
+
+            decline.addEventListener("click", () => {
+                window.clarity("consent", false)
+                this.style.display = "none"
+                localStorage.setItem("cookie-consent", "declined")
+            })
+        }
+    }
+
+    customElements.define('cookie-consent', CookieConsent)
+</script>

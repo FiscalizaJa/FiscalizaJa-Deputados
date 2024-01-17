@@ -1,0 +1,54 @@
+@use "colors";
+
+.consent-container {
+    display: none;
+    position: fixed;
+    max-width: 550px;
+    width: 95%;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 1.5rem;
+
+    background-color: darken(colors.$light, 3);
+    box-shadow: 0px 0px 2px colors.$dark;
+    padding: 20px;
+
+    h2 {
+        color: colors.$primary;
+        font-size: 1.25em;
+        margin-bottom: 1.5rem;
+    }
+
+    p {
+        font-size: 1em;
+    }
+
+    #consent-buttons {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: 1.5rem;
+
+
+        button {
+            display: block;
+            width: fit-content;
+            padding: 8px 18px;
+            border: none;
+            border-radius: 8px;
+
+            color: colors.$light;
+            cursor: pointer;
+            text-align: center;
+            font-size: 1em;
+        }
+
+        #accept {
+            background-color: colors.$primary;
+        }
+
+        #decline {
+            background-color: colors.$secondary;
+        }
+    }
+}
