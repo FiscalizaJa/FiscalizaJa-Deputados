@@ -2,7 +2,8 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ListaDeputados from "../components/ListaDeputados";
 
-const deputadosRequest = await fetch(`${import.meta.env.PUBLIC_API_URL}/deputados`)
+const baseURL = import.meta.env.PUBLIC_SERVERSIDE_API_URL || import.meta.env.PUBLIC_API_URL
+const deputadosRequest = await fetch(`${baseURL}/deputados`)
 
 if(!deputadosRequest.ok) {
     throw new Error("Request error")
