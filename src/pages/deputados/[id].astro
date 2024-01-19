@@ -29,7 +29,7 @@ const deputado = data[0].data
 deputado.dataNascimento = new Date(deputado.dataNascimento)
 deputado.nomeCivil = deputado.nomeCivil.split(" ").map(nome => nome.charAt(0) + nome.slice(1).toLowerCase()).join(" ")
 
-const og_url = deputado.operational === 1 ? `${prodURL}/dynamic/banners/${deputado.idCamara}` : `https://www.camara.leg.br/internet/deputado/bandep/pagina_do_deputado/${deputado.idCamara}.jpg`
+const og_url = deputado.operational === 1 ? `${prodURL}/api/dynamic/banners/${deputado.idCamara}` : `https://www.camara.leg.br/internet/deputado/bandep/pagina_do_deputado/${deputado.idCamara}.jpg`
 
 export const prerender = false
 ---
