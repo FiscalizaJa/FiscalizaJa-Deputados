@@ -7,6 +7,7 @@ import "../../styles/deputado.scss";
 const { id } = Astro.params
 
 const baseURL = import.meta.env.PUBLIC_SERVERSIDE_API_URL || import.meta.env.PUBLIC_API_URL
+const prodURL = import.meta.env.PUBLIC_PRODUCTION_URL
 
 const date = new Date()
 
@@ -28,7 +29,7 @@ const deputado = data[0].data
 deputado.dataNascimento = new Date(deputado.dataNascimento)
 deputado.nomeCivil = deputado.nomeCivil.split(" ").map(nome => nome.charAt(0) + nome.slice(1).toLowerCase()).join(" ")
 
-const og_url = deputado.operational === 1 ? `${baseURL}/dynamic/banners/${deputado.idCamara}` : `https://www.camara.leg.br/internet/deputado/bandep/pagina_do_deputado/${deputado.idCamara}.jpg`
+const og_url = deputado.operational === 1 ? `${prodURL}/dynamic/banners/${deputado.idCamara}` : `https://www.camara.leg.br/internet/deputado/bandep/pagina_do_deputado/${deputado.idCamara}.jpg`
 
 export const prerender = false
 ---

@@ -6,25 +6,26 @@ import CookieConsent from "../components/CookieConsent.astro";
 
 const { title, description, tags, og_img } = Astro.props
 
+const prodURL = import.meta.env.PUBLIC_PRODUCTION_URL
 let social_img = og_img || "https://deputados.fiscalizaja.com/vault.png"
 
-const href = Astro.url.href
+const href = Astro.url.pathname
 ---
 
 <html lang="pt-br">
     <head>
         <title>{title}</title>
         <meta name="description" content={description} />
-        <meta name="keywords", content="fiscalizajá, câmara dos deputados, portal da câmara dos deputados, deputados federais, despesas dos deputados federais, gastos dos deputados" />
+        <meta name="keywords" content="fiscalizajá, câmara dos deputados, portal da câmara dos deputados, deputados federais, despesas dos deputados federais, gastos dos deputados" />
 
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={href} />
+        <meta property="og:url" content={prodURL + href} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={social_img} />
 
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={href} />
+        <meta property="twitter:url" content={prodURL + href} />
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
         <meta property="twitter:image" content={social_img} />
