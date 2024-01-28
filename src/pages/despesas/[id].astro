@@ -1,0 +1,79 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import DespesaDetalhesLayout from "../../layouts/DespesaDetalhesLayout.astro"
+import formatDocument from "../../formatDocument";
+
+import type { Despesa } from "../../interfaces/Despesa";
+import type { Deputado } from "../../interfaces/Deputado";
+
+const baseURL = import.meta.env.PUBLIC_SERVERSIDE_API_URL
+const { id } = Astro.params
+
+const request = await fetch(`${baseURL}/despesas/${id}`) as any
+let despesa: { data: Despesa & { author: Deputado } } = null
+let deputado: Deputado = null
+
+if(request.ok) {
+    const body = await request.json()
+    despesa = body
+    deputado = despesa.data.author
+}
+
+let trechos = null
+
+if(despesa.data.trecho) {
+    const req_trechos = despesa.data.trecho.replace(/ /g, "").split("/").map((trecho, i) => {
+        return i === 0 ? `?iata=${trecho}` : `&iata=${trecho}`
+    }).join("")
+
+    const request = await fetch(`${baseURL}/aeroportos${req_trechos}`)
+
+    if(request.ok) {
+        trechos = await request.json()
+        trechos = trechos.data
+    }
+}
+
+despesa.data.descricao = despesa.data.descricao.split(" ").map((nome, i) => {
+    return i === 0 ? nome.charAt(0) + nome.slice(1).toLowerCase() : nome.toLowerCase()
+}).join(" ")
+
+export const prerender = false
+---
+
+<BaseLayout title={`${deputado.siglaSexo === "M" ? "Deputado" : "Deputada"} Federal ${deputado.nome}`} description={`Detalhamento da despesa sob ID ${despesa.data.id} | FiscalizaJá Deputados`}>
+    <DespesaDetalhesLayout>
+        <header>
+            <p class="lite" style="margin-bottom: 2rem">Detalhamento da despesa</p>
+            <div class="title">
+                <div class="img-container">
+                    <img src={deputado.urlFoto} width="75" height="75"/>
+                </div>
+                <div>
+                    <p style="font-size: 1.25em">{deputado.nome}</p>
+                    <p class="lite" style="font-size: 0.9em">{formatDocument(despesa.data.cpf || `Número da carteira: ${despesa.data.numeroCarteiraParlamentar || "não informado"}`)}</p>
+                </div>
+            </div> 
+       </header>
+       <main>
+            <h2>{despesa.data.descricao}</h2>
+            <p>Fornecedor: {despesa.data.fornecedor}</p>
+            <p>{despesa.data.cnpjCPF.length === 11 ? `CPF: ${formatDocument(despesa.data.cnpjCPF)}` : `CNPJ: ${formatDocument(despesa.data.cnpjCPF) || "não informado"}`}</p>
+            <p>Emitido em {new Date(despesa.data.dataEmissao).toLocaleDateString("pt-br", { dateStyle: "full" })}</p>
+            <p>Valor líquido: <strong>R$ {Number(despesa.data.valorLiquido).toLocaleString("pt-br")}</strong></p>
+            <p>Valor glosa: <strong>R$ {Number(despesa.data.valorGlosa).toLocaleString("pt-br")}</strong></p>
+            { despesa.data.passageiro && <p>Passageiros: {despesa.data.passageiro}</p> }
+            { despesa.data.trecho && <p>Trecho: { despesa.data.trecho }</p> }
+            { 
+                trechos && <ul>
+                    {
+                        trechos.map((trecho) => (
+                            <li>{trecho.name} - {trecho.iata}</li>
+                        ))    
+                    }  
+                </ul>
+            }
+            { despesa.data.urlDocumento ? <a href={despesa.data.urlDocumento} target="_blank">Comprovante</a> : <p class="red">Comprovante ausente</p> }
+        </main>
+    </DespesaDetalhesLayout>
+</BaseLayout>

@@ -1,0 +1,52 @@
+@use "colors";
+
+.container {
+    max-width: 880px;
+    margin: auto;
+    margin-top: 8vh;
+    padding: 25px;
+}
+
+.lite {
+    color: colors.$mid;
+}
+
+header {
+    .title {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+    
+        .img-container {
+            display: block;
+            width: 80px;
+            height: 80px;
+    
+            border-radius: 50%;
+            overflow: hidden;
+            
+            img {
+                object-fit: contain;
+                mix-blend-mode: multiply;
+            }
+        }
+    }
+}
+
+main {
+    margin-top: 1.2rem;
+
+    h2 {
+        font-size: 1em;
+        margin-bottom: 1.2rem;
+        font-weight: 600;
+    }
+
+    p {
+        font-size: 1em;
+    }
+
+    ul {
+        padding-left: 2rem;
+    }
+}

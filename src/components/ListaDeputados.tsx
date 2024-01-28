@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import miniSearch from "minisearch";
 import type { Deputado } from "../interfaces/Deputado";
 
 import "../styles/listaDeputado.scss";

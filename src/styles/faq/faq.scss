@@ -1,0 +1,40 @@
+@use "../colors";
+
+p {
+    font-size: 1.1em;
+}
+
+header {
+    max-width: 880px;
+    margin: auto;   
+
+    margin-top: 10vh;
+
+    padding: 25px;
+}
+
+main {
+    max-width: 880px;
+    margin: auto;
+    margin-bottom: 8vh;
+
+    padding: 25px;
+
+    h2 {
+        font-weight: 500;
+        margin-top: 1.5rem;
+    }
+
+    h3 {
+        margin-top: 1rem;
+    }
+
+    ul {
+        margin-top: 2rem
+    }
+
+    li {
+        font-size: 1.05em;
+        margin-left: 1.2rem;
+    }
+}

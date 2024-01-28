@@ -1,8 +1,9 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import DeputadoHeader from "../../components/DeputadoHeader"
-import DeputadoBody from "../../components/DeputadoBody";
-import "../../styles/deputado.scss";
+import DeputadoLayout from "../../layouts/DeputadoLayout.astro";
+// @ts-ignore
+import Header from "../../components/deputado/Header.astro";
+import Body from "../../components/deputado/Body";
 
 const { id } = Astro.params
 
@@ -13,6 +14,8 @@ const date = new Date()
 
 const request_promises = [
     fetch(`${baseURL}/deputados/${id}`),
+    fetch(`${baseURL}/deputados/${id}/despesas/resumo`),
+    fetch(`${baseURL}/deputados/${id}/despesas`)
 ]
 
 const serialize_promises = []
@@ -25,6 +28,8 @@ for(const request of requests) {
 
 const data = await Promise.all(serialize_promises)
 const deputado = data[0].data
+const resumo = data[1].data
+const despesas = data[2]
 
 deputado.dataNascimento = new Date(deputado.dataNascimento)
 deputado.nomeCivil = deputado.nomeCivil.split(" ").map(nome => nome.charAt(0) + nome.slice(1).toLowerCase()).join(" ")
@@ -33,8 +38,10 @@ const og_url = deputado.operational === 1 ? `${prodURL}/api/dynamic/banners/${de
 
 export const prerender = false
 ---
-
 <BaseLayout title={`${deputado.siglaSexo === "M" ? "Deputado" : "Deputada"} Federal ${deputado.nome} | FiscalizaJá Deputados`} description={`Despesas ${deputado.siglaSexo === "M" ? "do deputado" : "da deputada"} ${deputado.nome} com a cota parlamentar | FiscalizaJá Deputados`} og_img={og_url}>
-    <DeputadoHeader deputado={deputado} />
-    <DeputadoBody deputado={deputado} baseURL={import.meta.env.PUBLIC_API_URL} client:load/>
+    <DeputadoLayout>
+        <Header deputado={deputado} />
+        <div id="line" />
+        <Body resumo={resumo} deputado={deputado} despesas={despesas} client:load/>
+    </DeputadoLayout>
 </BaseLayout>

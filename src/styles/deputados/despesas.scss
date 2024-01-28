@@ -1,0 +1,101 @@
+@use "../colors";
+
+.despesas {
+    display: flex;
+    flex-direction: column;
+
+    width: 80%;
+    padding: 20px;
+    margin: auto;
+
+    h2,p {
+        color: lighten(colors.$dark, 10)
+    }
+
+    h2 {
+        font-size: 1.15em;
+        font-weight: 500;
+    }
+
+    p {
+        font-size: 0.95em;
+    }
+
+    .good {
+        width: fit-content;
+        padding: 2px 8px;
+
+        border-radius: 8px;
+        font-size: 0.8em;
+
+        background-color: lighten(colors.$terciary, 25);
+        color: darken(colors.$terciary, 30);
+    }
+
+    .bad {
+        width: fit-content;
+        padding: 2px 8px;
+
+        border-radius: 8px;
+        font-size: 0.8em;
+
+        background-color: lighten(colors.$secondary, 25);
+        color: colors.$secondary
+    }
+
+    .despesa {
+        display: flex;
+        gap: 1rem;
+
+        .sidebar {
+            width: 2px;
+            background-color: #34312d29;
+            box-shadow: 0px 0px 1px #34312d3d;
+        }
+
+        .icon {
+            position: absolute;
+            transform: translateX(-1.8rem) translateY(1px);
+            background-color: colors.$light;
+        }
+
+        .content {
+            margin-top: 2rem;
+        }
+
+        .first-content {
+            margin-top: 0;
+        }
+
+        .comprovante {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            width: fit-content;
+            margin-top: 0.8rem;
+
+            text-align: center;
+            text-decoration: none;
+            font-size: 0.9em;
+
+            border-radius: 8px;
+            padding: 4px 8px;
+
+            color: lighten(colors.$dark, 10);
+            box-shadow: 0px 0px 2px #34312d88;
+        }
+    }
+
+    @media screen and (max-width: 878px) {
+        width: 100%
+    }
+}
+
+#nothing {
+    width: fit-content;
+    max-width: 880px;
+
+    margin: auto;
+    padding: 10px;
+}

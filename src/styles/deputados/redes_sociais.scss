@@ -1,0 +1,131 @@
+@use "../colors";
+
+.socials {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    flex-wrap: wrap;
+
+    gap: 4rem;
+
+    margin-bottom: 3rem;
+
+    h2 {
+        margin-bottom: 0.5rem;
+    }
+
+    .social {
+        max-width: 400px;
+        padding: 12px;
+        border-radius: 12px;
+        min-width: none !important;
+        width: 100%;
+    }
+
+    .only-link {
+        background-color: colors.$mid;
+    }
+
+    .others {
+        a {
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+                color: darken(colors.$primary, 15)
+            }
+        }
+    }
+}
+
+.twitter-skeleton {
+    width: 100%;
+    max-width: 400px;
+    height: 400px;
+
+    background-color: black;
+    border-radius: 12px;
+
+    .header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        height: 56px;
+        padding: 12px;
+
+        border-bottom: 1px solid #2D2F32;
+
+        h3 {
+            color: rgb(231, 233, 234);
+            font-weight: 500;
+            font-size: 1.2em;
+        }
+    }
+    .post-container {
+        display: flex;
+        gap: 15px;
+        padding: 18px;
+
+        .photo {
+            max-width: 40px;
+            min-width: 40px;
+            height: 40px;
+            border-radius: 50%;
+
+            background-color: lighten(#000000, 15);
+            animation: loading linear infinite 2s;
+        }
+    }
+
+    .text {
+        max-width: 85%;
+        width: 100%;
+        height: 21px;
+        border-radius: 8px;
+
+        background-color: lighten(#000000, 15);
+        animation: loading linear infinite 2s;
+    }
+
+    .image {
+        height: 165px;
+        width: 98%;
+        border-radius: 18px;
+
+        margin-top: 16px;
+
+        background-color: lighten(#000000, 15);
+
+        animation: loading linear infinite 2s;
+    }
+
+    .post-author {
+        display: flex;
+        gap: 15px;
+    }
+
+    .buttons {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-top: 13px;
+
+        p {
+            font-size: 0.85em;
+            color: #6D7277
+        }
+    }
+}
+
+@keyframes loading {
+    0% {
+        background-color: lighten(#000000, 15);
+    }
+    50% {
+        background-color: lighten(#000000, 25)
+    }
+    0% {
+        background-color: lighten(#000000, 15);
+    }
+}

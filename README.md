@@ -26,15 +26,21 @@ Isso é explicado porquê o site tem alta pontuação em performance, somente o 
 Desenvolver com Astro aqui foi uma experiência incrível e eu te convido a conhecer o framework, se ainda não conhece! https://astro.build
 
 ## 🔑 Variáveis de ambiente
-A única variável de ambiente é `PUBLIC_API_URL`.
+As únicas variáveis de ambiente são `PUBLIC_API_URL`, `PUBLIC_SERVERSIDE_API_URL`, `PUBLIC_PRODUCTION_URL`.
 
 ```bash
-PUBLIC_API_URL="http://127.0.0.1:3000"
+PUBLIC_API_URL="https://deputados.fiscalizaja.com/api"
+PUBLIC_SERVERSIDE_API_URL="http://127.0.0.1:3000"
+PUBLIC_PRODUCTION_URL="https://deputados.fiscalizaja.com"
 ```
+
+- `PUBLIC_API_URL`: URL da API usada no lado do cliente. Usada também no servidor se `PUBLIC_SERVERSIDE_API_URL` for ausente.
+- `PUBLIC_SERVERSIDE_API_URL`: URL da API usada no lado do servidor. É útil em casos onde a API e o Site estão rodando na mesma máquina, sendo mais vantajoso usar o localhost no lado do servidor e no lado do cliente usar a URL da API no domínio.
+- `PUBLIC_PRODUCTION_URL`: Usada nas meta tags em produção, esse é a URL base do site.
 
 Você pode defini-lá no seu ambiente ou fazer um arquivo `.env`.
 
-A url da API apontada na variável deve ser para uma URL válida do [serviço rest do FiscalizaJá Deputados](https://github.com/FiscalizaJa/FiscalizaJa-Deputados-Rest).
+A urls da API apontadas nas variáveis deve ser para uma URL válida do [serviço rest do FiscalizaJá Deputados](https://github.com/FiscalizaJa/FiscalizaJa-Deputados-Rest).
 
 ## 🚀 Selfhosting
 As etapas para selfhosting de uma aplicação Astro são parecidas com a de uma aplicação Next.js, porém, tem algumas diferenças:

@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Faq from "../../layouts/Faq.astro";
+---
+
+<BaseLayout title="Porque os dados estão diferente do portal da câmara? | FiscalizaJá Deputados FAQ" description="Se você notou diferenças nos dados mostrados pelo FiscalizaJá e os da câmara, esta página vai te esclarecer.">
+    <Faq>
+        <div slot="header">
+            <h1>Dados diferentes do portal da câmara</h1>
+            <p>Se você notou diferenças entre os dados do FiscalizaJá, e os dados do portal da câmara dos deputados, esta página vai te esclarecer.</p>
+        </div>
+        <div slot="content">
+            <h2>Porquê há diferenças?</h2>
+            <p>O FiscalizaJá baixa os dados da câmara e salva em nossa própria base de dados. O que nos permite servir informações mesmo quando o serviço da câmara entra em manutenção ou fica fora do ar.</p>
+            <h3>Filtragem por sistemas distintos</h3>
+            <p>O sistema que publica as despesas com a cota parlamentar dos deputados federais é legado (e há muitas bizarrices), já o FiscalizaJá utiliza um sistema diferente e moderno. Ambos têm diferenças na representação e manipulação numérica dos valores, o que pode levar a diferenças no valor total de despesas.</p>
+            <p>Uma disparidade pouco significativa é esperada. No entanto, se você se você perceber uma considerável, é indicativo de que há uma anomalia nos dados.</p>
+            <h2>O que são anomalias nos dados?</h2>
+            <p>Uma anomalia acontece quando um determinado dado não está sendo representado da forma como deveria. Isso pode ocorrer por diversas razões:</p>
+            <ul>
+                <li>Problemas na geração dos dados por parte da câmara dos deputados.</li>
+                <li>Problemas no salvamento, filtragem ou carregamento dos dados por parte do FiscalizaJá.</li>
+                <li>Problemas na rede do servidor principal do FiscalizaJá, que pode levar a corrompimento de dados.</li>
+            </ul>
+            <h3>Se o problema vir da câmara</h3>
+            <p>Nesse caso, nós entraremos em contato com a equipe de suporte para obter informações e previsões de correção, caso o problema seja confirmado.</p>
+            <p>Apartir daí, para nós, o único jeito é esperar o problema ser solucionado.</p>
+            <h3>Se o problema vir do FiscalizaJá</h3>
+            <p>Se o problema for nosso, vamos nos responsabilizar em corrigir o mais breve possível.</p>
+            <h2>Compromisso com a transparência</h2>
+            <p>Nos comprometemos a entregar a todos a verdadeira transparência política. Nossa plataforma é de uso fácil e simples compreensão.</p>
+            <p>Estamos dispostos a corrigir falhas/bugs o mais rápido possível. Se você acha que há algum erro, sinta-se a vontade para entrar em contato: <strong>victor@fiscalizaja.com</strong></p>
+        </div>
+    </Faq>
+</BaseLayout>
