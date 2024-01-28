@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useRef, useEffect } from "react";
 import Highcharts from "highcharts/highmaps";
 import Chart from "highcharts-react-official";
 
@@ -44,7 +44,6 @@ const months = {
   
 
 export default function Charts(props: { resumo: Resumo, ano: number }) {
-
     const categories_data = props.resumo?.categorias?.map(r => {
         return {
             name: conversions[r.descricao] || r.descricao,
@@ -59,6 +58,15 @@ export default function Charts(props: { resumo: Resumo, ano: number }) {
             plotShadow: false,
             type: 'pie',
             backgroundColor: "transparent",
+            events: {
+                load: function() {
+                    const chart = this;
+                    setTimeout(() => {
+                        chart.setSize(null, null);
+                    }, 100);
+                    // força o gráfico a se redimensionar para o tamanho da tela.
+                }
+            }
         },
         title: {
             text: "Gastos por categoria",
@@ -83,7 +91,7 @@ export default function Charts(props: { resumo: Resumo, ano: number }) {
                 dataLabels: {
                     enabled: false
                 },
-                showInLegend: true,
+                showInLegend: true
             }
         },
         legend: {
@@ -104,7 +112,15 @@ export default function Charts(props: { resumo: Resumo, ano: number }) {
             plotBorderWidth: null,
             plotShadow: false,
             type: 'column',
-            backgroundColor: "transparent"
+            backgroundColor: "transparent",
+            events: {
+                load: function() {
+                    const chart = this;
+                    setTimeout(() => {
+                        chart.setSize(null, null);
+                    }, 100);
+                }
+            }
         },
         plotOptions: {
             column: {
