@@ -95,10 +95,13 @@ main {
             }
         }
 
-        div {
+        button {
             padding: 15px;
             background-color: darken(colors.$light, 1.5);
             color: colors.$dark;
+
+            border: none;
+            font-size: 1em;
 
             cursor: pointer;
         }

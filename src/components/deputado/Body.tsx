@@ -12,12 +12,12 @@ export default function Body(props: { deputado: Deputado, despesas: { data: Desp
     return (
         <main>
             <nav id="sections">
-                <div id="first" onClick={() => { defineSection("cota") }}>
+                <button id="first" className={section == "cota" ? "selected" : ""} onClick={() => { defineSection("cota") }}>
                     Cota parlamentar
-                </div>
-                <div id="last" onClick={() => { defineSection("redes_sociais") }}>
+                </button>
+                <button id="last" className={section == "redes_sociais" ? "selected" : ""} onClick={() => { defineSection("redes_sociais") }}>
                     Redes Sociais
-                </div>
+                </button>
             </nav>
             <div id="line" />
             { section === "cota" && <CotaParlamentar resumo={props.resumo} deputado={props.deputado} despesas={props.despesas} /> }

@@ -4,19 +4,21 @@ import "../styles/global.scss";
 import Navbar from "../components/Navbar.astro"
 import CookieConsent from "../components/CookieConsent.astro";
 
-const { title, description, tags, og_img } = Astro.props
+const { title, description, tags, og_img, keywords } = Astro.props
 
 const prodURL = import.meta.env.PUBLIC_PRODUCTION_URL
 let social_img = og_img || "https://deputados.fiscalizaja.com/vault.png"
 
 const href = Astro.url.pathname
+
+const to_use_keywords = keywords || "fiscalizajá, câmara dos deputados, portal da câmara dos deputados, deputados federais, despesas dos deputados federais, gastos dos deputados"
 ---
 
 <html lang="pt-br">
     <head>
         <title>{title}</title>
         <meta name="description" content={description} />
-        <meta name="keywords" content="fiscalizajá, câmara dos deputados, portal da câmara dos deputados, deputados federais, despesas dos deputados federais, gastos dos deputados" />
+        <meta name="keywords" content={to_use_keywords} />
 
         <meta property="og:type" content="website" />
         <meta property="og:url" content={prodURL + href} />

@@ -38,7 +38,7 @@ const og_url = deputado.operational === 1 ? `${prodURL}/api/dynamic/banners/${de
 
 export const prerender = false
 ---
-<BaseLayout title={`${deputado.siglaSexo === "M" ? "Deputado" : "Deputada"} Federal ${deputado.nome} | FiscalizaJá Deputados`} description={`Despesas ${deputado.siglaSexo === "M" ? "do deputado" : "da deputada"} ${deputado.nome} com a cota parlamentar | FiscalizaJá Deputados`} og_img={og_url}>
+<BaseLayout title={`${deputado.siglaSexo === "M" ? "Deputado" : "Deputada"} Federal ${deputado.nome}: Uso da cota parlamentar, atuação e muito mais. | Venha fiscalizar!`} description={`Conheça ${deputado.nome}, ${deputado.siglaSexo === "M" ? "deputado" : "deputada"} federal pelo ${deputado.siglaPartido}, nascido em ${deputado.dataNascimento.getFullYear()} na cidade de ${deputado.municipioNascimento}. Explore e fiscalize suas despesas parlamentares, incluindo viagens, aluguéis, manutenção de escritório e muito mais. Tenha acesso detalhado sobre o uso da cota parlamentar de ${deputado.nome.split(" ")[0]}. | FiscalizaJá Deputados`} keywords={`${deputado.siglaSexo === "M" ? "Deputado" : "Deputada"} federal ${deputado.nome}, ${deputado.nome}, ${deputado.nome} despesas, fiscalizaja, ${deputado.nome} cota parlamentar, ${deputado.nomeCivil}`} og_img={og_url}>
     <DeputadoLayout>
         <Header deputado={deputado} />
         <div id="line" />
