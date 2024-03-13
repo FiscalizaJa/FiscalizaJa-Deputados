@@ -32,7 +32,6 @@ function getAge(date: string) {
             <h1>{deputado.nome}</h1>
             <p id="tiny">{deputado.nomeCivil}</p>
             <p>{deputado.siglaSexo === "M" ? "Nascido" : "Nascida"} em {deputado.dataNascimento.getFullYear()} na cidade de {deputado.municipioNascimento}, {deputado.nomeCivil.split(" ")[0]} atua pelo {deputado.siglaPartido} e tem {getAge(deputado.dataNascimento)} anos de idade.</p>
-            <a href={`https://www.camara.leg.br/deputados/${deputado.idCamara}`} target="_blank">Mais informações</a>
         </div>
     </div>
 </header>
