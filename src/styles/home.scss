@@ -53,3 +53,34 @@ header {
         }
     }
 }
+
+main {
+    padding: 1.2em;
+
+    background-color: darken(colors.$light, 2);
+
+    section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @media screen and (max-width: 760px) {
+            flex-direction: column;
+        }
+
+        img {
+            object-fit: contain;
+            max-width: 100%;
+        }
+
+        p {
+            max-width: 548px;
+        }
+    }
+
+    .invert {
+        @media screen and (max-width: 760px) {
+            flex-direction: column-reverse;
+        }
+    }
+}
