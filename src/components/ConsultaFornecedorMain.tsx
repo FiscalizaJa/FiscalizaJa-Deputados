@@ -193,7 +193,7 @@ export default function ConsultaFornecedorMain(props: { baseURL: string }) {
                 </span>
                 <p className="search-prompt" onClick={() => {
                     setModalCnpj(true)
-                }}>Não sabe nenhum CNPJ ou CPF? Clique aqui para pesquisar por nome!</p>
+                }}>Pesquisar empresa por nome</p>
                 <button name="Consultar CNPJ ou CPF" disabled={!valid} onClick={() => {
                     Consulta()
                 }}>Consultar</button>

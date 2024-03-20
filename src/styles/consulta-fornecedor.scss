@@ -185,7 +185,9 @@ main {
     margin-top: 1rem;
     margin-bottom: 1rem;
     font-size: 0.9em;
-    color: colors.$mid;
+    color: colors.$primary;
+    text-decoration: underline;
+    text-align: center;
 
     cursor: pointer;
 }
